@@ -38,11 +38,11 @@ export var mockYouTubeApi = function (callback) {
 
 export var mockThunk = function(x) {
   return function(dispatch) {
-    // setTimeout(function() {
+    setTimeout(function() {
       dispatch({
         type: 'CHANGE_VIDEO',
       });
-    // }, 100);
+    }, 100);
   };
 };
 

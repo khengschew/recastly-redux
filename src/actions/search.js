@@ -4,11 +4,12 @@ import changeVideo from './currentVideo.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
 var handleVideoSearch = (q) => {
-  return (dispatch) => {
-    searchYouTube({ key: YOUTUBE_API_KEY, q }, data => {
-      dispatch(changeVideoList(data), changeVideo(data[0]));
+  return _.debounce((dispatch) => {
+    searchYouTube({ key: YOUTUBE_API_KEY, query: q }, data => {
+      dispatch(changeVideoList(data));
+      dispatch(changeVideo(data[0]));
     });
-  }
+  }, 200);
 };
 
 export default handleVideoSearch;
